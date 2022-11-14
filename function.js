@@ -30,4 +30,18 @@ window.addEventListener('DOMContentLoaded', function (event){
     document.getElementById('closeButton').addEventListener('click', e => {
         history.back();
     });
+    document.onmouseover = function() {
+        //User's mouse is inside the page.
+        window.innerDocClick = true;
+    }
+    document.onmouseleave = function() {
+        //User's mouse has left the page.
+        window.innerDocClick = false;
+    }
+    window.addEventListener('popstate', (event) => { if (window.innerDocClick) {
+        //Your own in-page mechanism triggered the hash change
+    } else {
+        //Browser back button was clicked
+        document.getElementsByClassName("close")[0].click();
+    }});
 });
